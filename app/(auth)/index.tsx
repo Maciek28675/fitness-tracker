@@ -1,5 +1,6 @@
 import AnimatedButton from "@/components/AnimatedButton";
 import { Colors } from "@/constants/Colors";
+import { router } from 'expo-router';
 import { useRef } from "react";
 import { Animated, StyleSheet, Text, View } from "react-native";
 
@@ -17,10 +18,10 @@ export default function Index() {
         </Text>
       </View>
       <View style={styles.buttonsContainer}>
-        <AnimatedButton scale={scaleSignIn} onPress={() => {}} buttonStyles={styles.buttonWrapper}>
+        <AnimatedButton scale={scaleSignIn} onPress={() => router.push("/(auth)/login")} buttonStyles={styles.buttonWrapper}>
             <Text style={styles.buttonText}>Logowanie</Text>
         </AnimatedButton>
-        <AnimatedButton scale={scaleRegister} onPress={() => {}} buttonStyles={styles.buttonWrapper}>
+        <AnimatedButton scale={scaleRegister} onPress={() => router.push("/(auth)/register")} buttonStyles={styles.buttonWrapper}>
             <Text style={styles.buttonText}>Rejestracja</Text>
         </AnimatedButton>
       </View>

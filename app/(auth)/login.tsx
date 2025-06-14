@@ -1,6 +1,7 @@
 import AnimatedButton from "@/components/AnimatedButton";
 import InputBox from "@/components/InputBox";
 import { Colors } from "@/constants/Colors";
+import { router } from 'expo-router';
 import { useRef } from 'react';
 import { Animated, SafeAreaView, StyleSheet, Text, View } from "react-native";
 
@@ -20,7 +21,7 @@ export default function Login() {
             </View>
 
             <View style={styles.formAction}>
-                <AnimatedButton scale={scaleSignIn} onPress={()=>{}} buttonStyles={styles.formButton}>
+                <AnimatedButton scale={scaleSignIn} onPress={()=> router.replace('/(logged-in)/(tabs)')} buttonStyles={styles.formButton}>
                     <Text style={styles.formButtonText}>Zaloguj się</Text>
                 </AnimatedButton>
             </View>

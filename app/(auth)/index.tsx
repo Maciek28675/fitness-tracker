@@ -18,11 +18,8 @@ export default function Index() {
         </Text>
       </View>
       <View style={styles.buttonsContainer}>
-        <AnimatedButton scale={scaleSignIn} onPress={() => router.push("/(auth)/login")} buttonStyles={styles.buttonWrapper}>
-            <Text style={styles.buttonText}>Logowanie</Text>
-        </AnimatedButton>
-        <AnimatedButton scale={scaleRegister} onPress={() => router.push("/(auth)/register")} buttonStyles={styles.buttonWrapper}>
-            <Text style={styles.buttonText}>Rejestracja</Text>
+        <AnimatedButton scale={scaleSignIn} onPress={() => router.push("/(logged-in)/(tabs)")} buttonStyles={styles.buttonWrapper}>
+            <Text style={styles.buttonText}>Zaczynamy!</Text>
         </AnimatedButton>
       </View>
     </View>

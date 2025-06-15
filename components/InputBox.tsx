@@ -8,6 +8,8 @@ interface props {
     isPassword?: boolean,
     inputMode?: 'email' | 'decimal' | 'none' | 'numeric' | 'search' | 'tel' | 'text' | 'url',
     keyboardType?: string,
+    value?: string
+    setValue?: (text: string ) => void,
     inputControlStyle?: StyleProp<TextStyle>,
     inputLabelStyle?: StyleProp<TextStyle>, 
 }
@@ -19,7 +21,9 @@ const InputBox: React.FC<props> = ({
     isPassword = false,
     inputMode = 'text',
     inputControlStyle,
-    inputLabelStyle
+    inputLabelStyle,
+    setValue,
+    value
 }) => {
     return (
         <View style={styles.input}>
@@ -35,6 +39,8 @@ const InputBox: React.FC<props> = ({
                 clearButtonMode="while-editing"
                 secureTextEntry={isPassword}
                 inputMode={inputMode}
+                value={value?.toString()}
+                onChangeText={setValue}
             />
         </View>
     )

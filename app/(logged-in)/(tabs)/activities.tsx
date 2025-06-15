@@ -1,18 +1,48 @@
 import InfoBox from '@/components/InfoBox';
 import { Colors } from '@/constants/Colors';
 import { SafeAreaView, ScrollView, StyleSheet, Text, View } from "react-native";
+
+import * as schema from '@/db/schema';
+import { drizzle } from 'drizzle-orm/expo-sqlite';
+import { useSQLiteContext } from 'expo-sqlite';
+import { useEffect, useState } from 'react';
+import { FlatList } from 'react-native';
+
 export default function index() {
+
+    const db = useSQLiteContext();
+    const drizzleDb = drizzle(db, { schema });
+
+    const [trainings, setTrainings] = useState<Array<any>>([]);
+
+    useEffect(() => {
+        const fetchTrainings = async () => {
+            try {
+                const result = await drizzleDb.select().from(schema.training).all();
+                setTrainings(result);
+            } catch (err) {
+                console.error('Error when fetchin workouts:', err);
+            }
+        };
+
+        fetchTrainings();
+    }, []);
+
     return (
         <SafeAreaView style={styles.container}>
                 <View style={styles.headerContainer}>
                     <Text style={styles.headerText}>
-                        Plany
+                        Treningi
                     </Text>
                 </View>
                 <InfoBox style={{gap: 16}}>
-                    <Text style={styles.workoutPlanText}>Push Pull Legs 1</Text>
-                    <Text style={styles.workoutPlanText}>FBW</Text>
-                    <Text style={styles.workoutPlanText}>Split 5 dni</Text>
+                     <FlatList
+                        data={trainings}
+                        keyExtractor={(item) => item.id.toString()}
+                        renderItem={({ item }) => (
+                            <Text style={styles.workoutPlanText}>{item.name}</Text>
+                        )}
+                    />
                 </InfoBox>
                 
                 <View style={styles.headerContainer}>
@@ -28,7 +58,7 @@ export default function index() {
                             </View>
                             <View>
                                 <Text style={styles.triainingSummarySubText}>
-                                    Push Pull Legs 1 | 14.06.2025
+                                    14.06.2025
                                 </Text>
                             </View>
                         </View>
@@ -38,7 +68,7 @@ export default function index() {
                             </View>
                             <View>
                                 <Text style={styles.triainingSummarySubText}>
-                                    Push Pull Legs 1 | 12.06.2025
+                                    12.06.2025
                                 </Text>
                             </View>
                         </View>
@@ -48,7 +78,7 @@ export default function index() {
                             </View>
                             <View>
                                 <Text style={styles.triainingSummarySubText}>
-                                    Push Pull Legs 1 | 10.06.2025
+                                    10.06.2025
                                 </Text>
                             </View>
                         </View>

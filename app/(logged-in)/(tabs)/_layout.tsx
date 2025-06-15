@@ -1,9 +1,8 @@
 import { Colors } from '@/constants/Colors';
 import { Tabs } from 'expo-router';
-import { ClipboardDocumentCheckIcon, Cog6ToothIcon, HomeIcon, PlusCircleIcon } from 'react-native-heroicons/outline';
+import { ClipboardDocumentCheckIcon, HomeIcon, PlusCircleIcon } from 'react-native-heroicons/outline';
 import {
     ClipboardDocumentCheckIcon as ClipboardDocumentCheckIconSolid,
-    Cog6ToothIcon as Cog6ToothIconSolid,
     HomeIcon as HomeIconSolid,
     PlusCircleIcon as PlusCircleIconSolid
 } from 'react-native-heroicons/solid';
@@ -52,17 +51,6 @@ export default function TabLayout() {
                         <PlusCircleIconSolid color={color} size={24}/>
                     ) : (
                         <PlusCircleIcon color={color} size={24}/>
-                    ),
-
-            }}/>
-            <Tabs.Screen name="settings" options={{
-                title: 'Ustawienia',
-                headerShown: false,
-                tabBarIcon: ({color, focused}) => 
-                    focused ? (
-                        <Cog6ToothIconSolid color={color} size={24}/>
-                    ) : (
-                        <Cog6ToothIcon color={color} size={24}/>
                     ),
 
             }}/>

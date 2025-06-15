@@ -1,6 +1,7 @@
 import AnimatedButton from '@/components/AnimatedButton';
 import InfoBox from '@/components/InfoBox';
 import { Colors } from '@/constants/Colors';
+import { router } from 'expo-router';
 import { useRef } from 'react';
 import { Animated, SafeAreaView, ScrollView, StyleSheet, Text, View } from "react-native";
 export default function index() {
@@ -17,22 +18,10 @@ export default function index() {
                         </Text>
                     </View>
                     <InfoBox>
-                        <Text style={styles.lastActivityText}>Data: </Text>
-                        <Text style={styles.lastActivityText}>Nazwa: </Text>
-                        <Text style={styles.lastActivityText}>Czas: </Text>
-                        <Text style={styles.lastActivityText}>Wykonane serie: </Text>
-                        <Text style={styles.lastActivityText}>Objętość: </Text>
-                        <Text style={styles.lastActivityText}>Postępy: </Text>
-                    </InfoBox>
-                </View>
-                <View style={styles.lastActivityContainer}>
-                    <View style={styles.HeaderContainer}>
-                        <Text style={styles.HeaderText}>
-                            Propozycja na dziś
-                        </Text>
-                    </View>
-                    <InfoBox>
-                        <Text style={styles.todaySuggestionText}>Odpoczynek</Text>
+                        <Text style={styles.lastActivityText}>Data: 15.06.205</Text>
+                        <Text style={styles.lastActivityText}>Nazwa: Push</Text>
+                        <Text style={styles.lastActivityText}>Czas: 00:27:02</Text>
+                        <Text style={styles.lastActivityText}>Wykonane serie: 6/6</Text>
                     </InfoBox>
                 </View>
                 <View style={styles.lastActivityContainer}>
@@ -42,13 +31,13 @@ export default function index() {
                         </Text>
                     </View>
                     <InfoBox>
-                        <Text style={styles.lastActivityText}>Martwy ciąg: </Text>
-                        <Text style={styles.lastActivityText}>Wyciskanie: </Text>
-                        <Text style={styles.lastActivityText}>Przysiad: </Text>
+                        <Text style={styles.lastActivityText}>Martwy ciąg: 85kg</Text>
+                        <Text style={styles.lastActivityText}>Wyciskanie: 70kg</Text>
+                        <Text style={styles.lastActivityText}>Przysiad: 60kg</Text>
                     </InfoBox>
                 </View>
                 <View style={styles.buttonContainer}>
-                    <AnimatedButton scale={scaleStartTraining} onPress={() => {}} buttonStyles={styles.startTrainingButton}>
+                    <AnimatedButton scale={scaleStartTraining} onPress={() => router.push('/(logged-in)/trainingSession')} buttonStyles={styles.startTrainingButton}>
                         <Text style={styles.startTrainingButtonText}>Rozpocznij trening</Text>
                     </AnimatedButton>
                 </View>

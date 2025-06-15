@@ -6,6 +6,7 @@ import * as schema from '@/db/schema';
 import { excercise, Excercise } from '@/db/schema';
 import { eq } from 'drizzle-orm';
 import { drizzle } from 'drizzle-orm/expo-sqlite';
+import { router } from 'expo-router';
 import { useSQLiteContext } from 'expo-sqlite';
 import { useRef, useState } from 'react';
 import { Animated, SafeAreaView, ScrollView, StyleSheet, Text, View } from "react-native";
@@ -103,6 +104,9 @@ export default function index() {
             setCurrentNumExcercises(0);
 
             console.log("Training and exercises saved successfully.");
+
+            router.replace('/(logged-in)/(tabs)/new?refresh')
+
         } catch (error) {
             console.error("Failed to add training:", error);
         }

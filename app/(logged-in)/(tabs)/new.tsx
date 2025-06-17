@@ -6,6 +6,7 @@ import * as schema from '@/db/schema';
 import { excercise, Excercise } from '@/db/schema';
 import { eq } from 'drizzle-orm';
 import { drizzle } from 'drizzle-orm/expo-sqlite';
+import { router } from 'expo-router';
 import { useSQLiteContext } from 'expo-sqlite';
 import { useRef, useState } from 'react';
 import { Animated, SafeAreaView, ScrollView, StyleSheet, Text, View } from "react-native";
@@ -82,27 +83,27 @@ export default function index() {
             const insertedTraining = await drizzleDb.insert(schema.training).values({
                 name: trainingName,
                 numExcercises: Number(numExcercises),
-                planId: null // or actual planId if available
+                planId: null
             }).returning();
 
             const trainingId = insertedTraining[0]?.id;
 
             if (!trainingId) throw new Error("Training insert failed");
 
-            // 2. Update each excercise with the trainingId
             for (const ex of excercises ?? []) {
                 await drizzleDb.update(schema.excercise)
                     .set({ trainingId })
                     .where(eq(schema.excercise.id, ex.id))
             }
 
-            // 3. Reset state or navigate
             setTrainingName('');
             setNumExcercises('0');
             setExcercises([]);
             setCurrentNumExcercises(0);
 
             console.log("Training and exercises saved successfully.");
+
+            router.push('/(logged-in)/(tabs)/activities?refresh=true')
         } catch (error) {
             console.error("Failed to add training:", error);
         }
